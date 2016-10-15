@@ -109,6 +109,9 @@ class Common(Configuration):
     # https://docs.djangoproject.com/en/1.10/howto/static-files/
     STATIC_URL = '/static/'
 
+    # Feng Yuan root data directory, used to hold all user files
+    DATA_DIRECTORY = '/data'
+
 
 class Development(Common):
     """
@@ -117,6 +120,8 @@ class Development(Common):
     DEBUG = True
 
     ALLOWED_HOSTS = []
+
+    DATA_DIRECTORY = os.path.join(BASE_DIR, 'data/')
 
 
 class Staging(Common):
