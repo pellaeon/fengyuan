@@ -35,6 +35,9 @@ class Common(Configuration):
 
         'django_extensions',
         'debug_toolbar',
+
+        'user',
+        'files',
     ]
 
     MIDDLEWARE_CLASSES = [
