@@ -38,6 +38,9 @@ class Common(Configuration):
 
         'user',
         'files',
+        'polymorphic_tree',
+        'polymorphic',
+        'mptt',
     ]
 
     MIDDLEWARE_CLASSES = [
@@ -121,7 +124,7 @@ class Development(Common):
 
     ALLOWED_HOSTS = []
 
-    DATA_DIRECTORY = os.path.join(BASE_DIR, 'data/')
+    DATA_DIRECTORY = os.path.join(Common.BASE_DIR, 'data/')
 
 
 class Staging(Common):
