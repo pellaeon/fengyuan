@@ -1,6 +1,8 @@
 import os
 import uuid
 
+from django.conf import settings
+from django.contrib.auth.models import User
 from django.db import models
 from django.utils import timezone
 from polymorphic_tree.models import (PolymorphicMPTTModel,
@@ -32,7 +34,7 @@ class Inode(FYNode):
 
 class Directory(Inode):
     path = models.FilePathField(
-        path=owner.profile.home_dir, recursive=True, allow_folders=True, allow_files=False)
+        path=settings.MEDIA_ROOT, recursive=True, allow_folders=True, allow_files=False)
 
     @property
     def name(self):
