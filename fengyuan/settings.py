@@ -113,7 +113,7 @@ class Common(Configuration):
     STATIC_URL = '/static/'
 
     # Feng Yuan root data directory, used to hold all user files
-    DATA_DIRECTORY = '/data'
+    MEDIA_ROOT = os.path.join(Common.BASE_DIR, 'data/')
 
 
 class Development(Common):
@@ -124,7 +124,7 @@ class Development(Common):
 
     ALLOWED_HOSTS = []
 
-    DATA_DIRECTORY = os.path.join(Common.BASE_DIR, 'data/')
+    MEDIA_ROOT = os.path.join(Common.BASE_DIR, 'data/')
 
 
 class Staging(Common):
@@ -149,4 +149,3 @@ class Production(Staging):
     """
     The in-production settings.
     """
-    pass
