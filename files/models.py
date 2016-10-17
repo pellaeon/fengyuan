@@ -17,7 +17,7 @@ class FYNode(PolymorphicMPTTModel):
     """
     parent = PolymorphicTreeForeignKey('self', blank=True, null=True,
                                        related_name='children')
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=255)
     gid = models.UUIDField(default=uuid.uuid4, editable=False)  # global id
 
 
