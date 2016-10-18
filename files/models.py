@@ -1,4 +1,3 @@
-import os
 import uuid
 
 from django.conf import settings
@@ -36,9 +35,6 @@ class Directory(Inode):
     path = models.FilePathField(
         path=settings.MEDIA_ROOT, recursive=True, allow_folders=True, allow_files=False)
 
-    @property
-    def name(self):
-        return os.path.basename(self.path)
 
 # TODO class RootDirectory(Directory)
 # Future: different FileStorage class configured in RootDirectory
