@@ -52,6 +52,6 @@ if [ "$STAGED_PYTHON_FILES" != "" ]
 then
     autoflake -i --remove-all-unused-imports --remove-unused-variables $STAGED_PYTHON_FILES
     isort -y $STAGED_PYTHON_FILES
-    autopep8 -i $STAGED_PYTHON_FILES
+    yapf -i $STAGED_PYTHON_FILES
     git add $STAGED_PYTHON_FILES
 fi
