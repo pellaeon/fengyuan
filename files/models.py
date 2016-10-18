@@ -42,4 +42,9 @@ class Directory(Inode):
 
 # TODO class RootDirectory(Directory)
 # Future: different FileStorage class configured in RootDirectory
-# TODO class File(Inode)
+
+
+class File(Inode):
+    # http://www.ietf.org/rfc/rfc4288.txt
+    # type-name/subtype-name == 127+1+127 == 255
+    mime = models.CharField(max_length=256, default='application/octet-stream')
