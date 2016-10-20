@@ -36,6 +36,7 @@ class Common(Configuration):
         'django_extensions',
         'debug_toolbar',
 
+        'fengyuan',
         'user',
         'files',
         'polymorphic_tree',
@@ -125,6 +126,8 @@ class Development(Common):
     ALLOWED_HOSTS = []
 
     MEDIA_ROOT = os.path.join(Common.BASE_DIR, 'data/')
+
+    STATIC_ROOT = os.path.join(Common.BASE_DIR, 'static/')
 
 
 class Staging(Common):

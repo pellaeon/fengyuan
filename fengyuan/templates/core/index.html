@@ -1,0 +1,25 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<!--[if IE 8]> 				 <html class="no-js lt-ie9" lang="{{ LANGUAGE_CODE }}" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="{{ LANGUAGE_CODE }}" > <!--<![endif]-->
+
+<head>
+	<meta charset="utf-8" />
+	<title>{% block title %} ‧ 豐原{% endblock %}</title>
+	<meta name="description" content="Get Feng Yuan https://github.com/pellaeon/fengyuan" />
+	<meta name="viewport" content="width=device-width" />
+	<link rel="stylesheet" href="{% static 'css/main.css' %}" />
+{% block headers %}
+{% endblock %}
+</head>
+<body>
+<header id="main-header">
+	<h1>Bla</h1>
+</header>
+{% block content_block %}
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}
+</body>
+</html>
