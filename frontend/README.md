@@ -1,4 +1,14 @@
-# Feng Yuan Frontend
+# Feng Yuan Files App Frontend
+
+## `index.html`
+
+`index.html` in this directory is only used for `npm run dev` to test a single app. It is **not** a Django template, Feng Yuan has its own Django template that will render the nav bar, only the app part is handled by Vue.
+
+When you run `npm run dev` you will only see a single app. Each app is developed and tested separately.
+
+## static/
+
+`static/` directory is needed for build, should change `build/build.js` to fix this later. TODO
 
 > A Vue.js project
 
