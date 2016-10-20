@@ -94,3 +94,6 @@ data
 
 ## Vim
 *.sw*
+
+# Node
+node_modules
