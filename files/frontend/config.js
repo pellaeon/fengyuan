@@ -3,8 +3,8 @@ var path = require('path')
 
 module.exports = {
   build: {
-    index: path.resolve(__dirname, '../fengyuan/templates/index.html'),
-    assetsRoot: path.resolve(__dirname, '../fengyuan/static'),
+    index: path.resolve(__dirname, '../static/index.html'),
+    assetsRoot: path.resolve(__dirname, '../static'),
     assetsSubDirectory: 'vue',
     assetsPublicPath: '/',
     productionSourceMap: true

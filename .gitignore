@@ -97,4 +97,4 @@ data
 
 # Node
 node_modules
-!frontend/build
+!*/frontend/build
