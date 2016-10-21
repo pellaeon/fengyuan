@@ -21,11 +21,11 @@ export default {
 </script>
 
 <style>
-html {
+html, body {
   height: 100%;
 }
 
-body {
+div#main-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;

@@ -6,7 +6,9 @@
 {% endblock %}
 {% block content_block %}
 <p>this is load-vue</p>
-<app></app>
+<div id="main-wrapper">
+	<app></app>
+</div>
 {% endblock %}
 {% block scripts %}
 <script type="text/javascript" src="{% static 'vue/app.js' %}" />
