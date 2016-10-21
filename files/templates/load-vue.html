@@ -1,4 +1,13 @@
 {% extends 'core/index.html' %}
+{% load staticfiles %}
+
+{% block headers %}
+	<link rel="stylesheet" href="{% static 'vue/app.css' %}" />
+{% endblock %}
 {% block content_block %}
 <p>this is load-vue</p>
+<app></app>
+{% endblock %}
+{% block scripts %}
+<script type="text/javascript" src="{% static 'vue/app.js' %}" />
 {% endblock %}

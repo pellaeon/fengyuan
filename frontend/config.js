@@ -5,7 +5,7 @@ module.exports = {
   build: {
     index: path.resolve(__dirname, '../fengyuan/templates/index.html'),
     assetsRoot: path.resolve(__dirname, '../fengyuan/static'),
-    assetsSubDirectory: '/',
+    assetsSubDirectory: 'vue',
     assetsPublicPath: '/',
     productionSourceMap: true
   },
