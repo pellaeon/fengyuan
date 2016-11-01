@@ -1,52 +1,37 @@
 <template>
   <div id="app">
-    <img class="logo" src="./assets/vue.png">
-    <br>
-    <img class="logo" src="./assets/dj.png">
-    <hello></hello>
-    <p>
-      Welcome to your Django - Vue.js app!
-    </p>
+	  <main-wrapper></main-wrapper>
   </div>
 </template>
 
 <script>
-import Hello from './components/Hello'
+import mainWrapper from './components/main-wrapper'
 
 export default {
   components: {
-    Hello
+    mainWrapper
   }
 }
 </script>
 
-<style>
-html, body {
-  height: 100%;
-}
+<style lang="scss">
+@import "static/scss/partials/_vars.scss";
+@import "static/scss/partials/_mixins.scss";
+@import "static/scss/partials/_shared.scss";
 
-div#main-wrapper {
+#main {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-}
+  min-height: 100vh;
+  flex-direction: column;
 
-#app {
-  color: #2c3e50;
-  margin-top: -100px;
-  max-width: 600px;
-  font-family: Source Sans Pro, Helvetica, sans-serif;
-  text-align: center;
-}
+  background: $colorMainBgr;
+  color: $colorMainText;
 
-#app a {
-  color: #42b983;
-  text-decoration: none;
-}
+  font-family: $fontFamily;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: $fontWeight_Thin;
 
-.logo {
-  width: 100px;
-  height: 100px
+  padding-bottom: $footerHeight;
 }
 </style>
