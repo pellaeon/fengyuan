@@ -1,150 +1,25 @@
 <template>
-  <nav class="side side-nav" id="sidebar" :class="{ showing: showing }">
-    <section class="music">
-      <h1>Your Music</h1>
+  <nav class="side side-nav" id="sidebar">
+    <section>
+      <h1>Mounts</h1>
 
       <ul class="menu">
         <li>
-          <a class="home" :class="[currentView == 'home' ? 'active' : '']" href="/#!/home">Home</a>
-        </li>
-        <li>
-          <a class="queue"
-            :class="[currentView == 'queue' ? 'active' : '']"
-            href="/#!/queue"
-            @dragleave="removeDroppableState"
-            @dragover.prevent="allowDrop"
-            @drop.stop.prevent="handleDrop">Current Queue</a>
-        </li>
-        <li>
-          <a class="songs" :class="[currentView == 'songs' ? 'active' : '']" href="/#!/songs">All Songs</a>
-        </li>
-        <li>
-          <a class="albums" :class="[currentView == 'albums' ? 'active' : '']" href="/#!/albums">Albums</a>
-        </li>
-        <li>
-          <a class="artists" :class="[currentView == 'artists' ? 'active' : '']" href="/#!/artists">Artists</a>
-        </li>
-        <li v-if="sharedState.useYouTube">
-          <a class="youtube" :class="[currentView == 'youtubePlayer' ? 'active' : '']" href="/#!/youtube">YouTube Video</a>
+          <a class="home">Local</a>
         </li>
       </ul>
     </section>
 
-    <playlists :current-view="currentView"></playlists>
-
-    <section v-if="user.current.is_admin" class="manage">
-      <h1>Manage</h1>
-
-      <ul class="menu">
-        <li>
-          <a class="settings" :class="[currentView == 'settings' ? 'active' : '']" href="/#!/settings">Settings</a>
-        </li>
-        <li>
-          <a class="users" :class="[currentView == 'users' ? 'active' : '']" href="/#!/users">Users</a>
-        </li>
-      </ul>
-    </section>
-
-    <a
-      :href="'https://github.com/phanan/koel/releases/tag/' + sharedState.latestVersion"
-      target="_blank"
-      v-if="user.current.is_admin && sharedState.currentVersion < sharedState.latestVersion"
-      class="new-ver">
-      Koel version {{ sharedState.latestVersion }} is available!
-    </a>
   </nav>
 </template>
 
 <script>
-import isMobile from 'ismobilejs';
-import $ from 'jquery';
-
-import { event } from '../../../utils';
-import { sharedStore, userStore, songStore, queueStore } from '../../../stores';
-import playlists from './playlists.vue';
-
-export default {
-  components: { playlists },
-
-  data() {
-    return {
-      currentView: 'home',
-      user: userStore.state,
-      showing: !isMobile.phone,
-      sharedState: sharedStore.state,
-    };
-  },
-
-  methods: {
-    /**
-     * Remove the droppable state when a dragleave event occurs on the playlist's DOM element.
-     *
-     * @param  {Object} e The dragleave event.
-     */
-    removeDroppableState(e) {
-      $(e.target).removeClass('droppable');
-    },
-
-    /**
-     * Add a "droppable" class and set the drop effect when an item is dragged over "Queue" menu.
-     *
-     * @param  {Object} e The dragover event.
-     */
-    allowDrop(e) {
-      $(e.target).addClass('droppable');
-      e.dataTransfer.dropEffect = 'move';
-
-      return false;
-    },
-
-    /**
-     * Handle songs dropped to our Queue menu item.
-     *
-     * @param  {Object} e The event
-     *
-     * @return {Boolean}
-     */
-    handleDrop(e) {
-      this.removeDroppableState(e);
-
-      if (!e.dataTransfer.getData('application/x-koel.text+plain')) {
-        return false;
-      }
-
-      const songs = songStore.byIds(e.dataTransfer.getData('application/x-koel.text+plain').split(','));
-
-      if (!songs.length) {
-        return false;
-      }
-
-      queueStore.queue(songs);
-
-      return false;
-    },
-  },
-
-  created() {
-    event.on('main-content-view:load', view => {
-      this.currentView = view;
-
-      // Hide the sidebar if on mobile
-      if (isMobile.phone) {
-        this.showing = false;
-      }
-    });
-
-     /**
-     * Listen to sidebar:toggle event to show or hide the sidebar.
-     * This should only be triggered on a mobile device.
-     */
-    event.on('sidebar:toggle', () => this.showing = !this.showing);
-  },
-};
+// TODO add back ismobilejs
 </script>
 
-<style lang="sass">
-@import "../../../../sass/partials/_vars.scss";
-@import "../../../../sass/partials/_mixins.scss";
+<style lang="scss">
+@import "../../../../static/scss/partials/_vars.scss";
+@import "../../../../static/scss/partials/_mixins.scss";
 
 #sidebar {
   flex: 0 0 256px;
@@ -209,34 +84,6 @@ export default {
 
       &.home::before {
         content: "\f015";
-      }
-
-      &.queue::before {
-        content: "\f0cb";
-      }
-
-      &.songs::before {
-        content: "\f001";
-      }
-
-      &.albums::before {
-        content: "\f152";
-      }
-
-      &.artists::before {
-        content: "\f130";
-      }
-
-      &.youtube::before {
-        content: "\f16a";
-      }
-
-      &.settings::before {
-        content: "\f013";
-      }
-
-      &.users::before {
-        content: "\f0c0";
       }
     }
   }
