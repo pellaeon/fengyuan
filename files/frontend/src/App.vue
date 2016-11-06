@@ -19,7 +19,7 @@ export default {
 @import "static/scss/partials/_mixins.scss";
 @import "static/scss/partials/_shared.scss";
 
-#main {
+#app {
   display: flex;
   min-height: 100vh;
   flex-direction: column;

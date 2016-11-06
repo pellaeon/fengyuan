@@ -1,5 +1,5 @@
 <template>
-  <nav class="side side-nav" id="sidebar">
+  <nav class="side side-nav" id="sidebar"><!-- TODO ismobilejs showing (hide this if mobile)-->
     <section>
       <h1>Mounts</h1>
 

@@ -1,74 +1,29 @@
 <template>
   <section id="mainContent">
     <div class="translucent" :style="{ backgroundImage: albumCover ? 'url(' + albumCover + ')' : 'none' }"></div>
-    <home v-show="view === 'home'"></home>
-    <queue v-show="view === 'queue'"></queue>
-    <songs v-show="view === 'songs'"></songs>
-    <albums v-show="view === 'albums'"></albums>
-    <album v-show="view === 'album'"></album>
-    <artists v-show="view === 'artists'"></artists>
-    <artist v-show="view === 'artist'"></artist>
-    <users v-show="view === 'users'"></users>
-    <settings v-show="view === 'settings'"></settings>
-    <playlist v-show="view === 'playlist'"></playlist>
-    <favorites v-show="view === 'favorites'"></favorites>
-    <profile v-show="view === 'profile'"></profile>
-    <youtube-player v-if="sharedState.useYouTube" v-show="view === 'youtubePlayer'"></youtube-player>
+    <filelist></filelist>
   </section>
 </template>
 
 <script>
-import { event } from '../../../utils';
-import { albumStore, sharedStore } from '../../../stores';
+// import { event } from '../../../utils'; //TODO
 
-import albums from './albums.vue';
-import album from './album.vue';
-import artists from './artists.vue';
-import artist from './artist.vue';
-import songs from './songs.vue';
-import settings from './settings.vue';
-import users from './users.vue';
-import queue from './queue.vue';
-import home from './home.vue';
-import playlist from './playlist.vue';
-import favorites from './favorites.vue';
-import profile from './profile.vue';
-import youtubePlayer from './youtube-player.vue';
+import filelist from './filelist.vue';
 
 export default {
-  components: { albums, album, artists, artist, songs, settings,
-    users, home, queue, playlist, favorites, profile, youtubePlayer },
+  components: { filelist },
 
   data() {
     return {
-      view: 'home', // The default view
       albumCover: null,
-      sharedState: sharedStore.state,
     };
-  },
-
-  created() {
-    event.on({
-      'main-content-view:load': view => this.view = view,
-
-      /**
-       * When a new song is played, find its cover for the translucent effect.
-       *
-       * @param  {Object} song
-       *
-       * @return {Boolean}
-       */
-      'song:played': song => {
-        this.albumCover = song.album.cover === albumStore.stub.cover ? null : song.album.cover;
-      },
-    });
   },
 };
 </script>
 
-<style lang="sass">
-@import "../../../../sass/partials/_vars.scss";
-@import "../../../../sass/partials/_mixins.scss";
+<style lang="scss">
+@import "../../../../static/scss/partials/_vars.scss";
+@import "../../../../static/scss/partials/_mixins.scss";
 
 #mainContent {
   flex: 1;
