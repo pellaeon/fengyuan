@@ -5,13 +5,13 @@
 </template>
 
 <script>
-import mainWrapper from './components/main-wrapper'
+import mainWrapper from './components/main-wrapper';
 
 export default {
   components: {
     mainWrapper
-  }
-}
+  },
+};
 </script>
 
 <style lang="scss">
