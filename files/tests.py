@@ -43,5 +43,12 @@ class ManagementCommandsScanTest(TestCase):
         with self.assertRaises(models.ObjectDoesNotExist):
             FYNode.objects.get(name='dx')
 
+    def test_file_and_dir_should_be_scanned(self):
+        self.assertIsInstance(FYNode.objects.get(name='files'), FYNode)
+        self.assertIsInstance(FYNode.objects.get(name='a'), FYNode)
+        self.assertIsInstance(FYNode.objects.get(name='b'), FYNode)
+        self.assertIsInstance(FYNode.objects.get(name='c'), FYNode)
+        self.assertIsInstance(FYNode.objects.get(name='d'), FYNode)
+
     def tearDown(self):
         self.user.delete()
