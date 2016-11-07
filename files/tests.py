@@ -2,7 +2,10 @@ import os
 
 from django.contrib.auth.models import User
 from django.core.management import call_command
+from django.db import models
 from django.test import TestCase
+
+from files.models import FYNode
 
 
 class ManagementCommandsScanTest(TestCase):
@@ -32,6 +35,13 @@ class ManagementCommandsScanTest(TestCase):
         os.mkdir(dir_d_in_dir_b)
 
         call_command('scan', self.user.username)
+
+    def test_file_and_dir_should_not_be_scanned(self):
+        with self.assertRaises(models.ObjectDoesNotExist):
+            FYNode.objects.get(name='fx')
+
+        with self.assertRaises(models.ObjectDoesNotExist):
+            FYNode.objects.get(name='dx')
 
     def tearDown(self):
         self.user.delete()
