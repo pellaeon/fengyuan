@@ -32,7 +32,11 @@ class Inode(FYNode):
 
 class Directory(Inode):
     path = models.FilePathField(
-        path=settings.MEDIA_ROOT, recursive=True, allow_folders=True, allow_files=False)
+        path=settings.MEDIA_ROOT,
+        recursive=True,
+        allow_folders=True,
+        allow_files=False,
+    )
 
 
 # TODO class RootDirectory(Directory)
