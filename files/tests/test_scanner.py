@@ -5,10 +5,11 @@ from django.core.management import call_command
 from django.db import models
 from django.test import TestCase
 
-from files.models import File, Directory
+from files.models import Directory, File
 
 
 class ManagementCommandsScanTest(TestCase):
+
     def setUp(self):
         '''
         user_home_dir/
@@ -21,7 +22,8 @@ class ManagementCommandsScanTest(TestCase):
                     d/
         '''
 
-        self.user = User.objects.create_user(username='fake-user-for-testing', email='test@test.com', password='test')
+        self.user = User.objects.create_user(
+            username='fake-user-for-testing', email='test@test.com', password='test')
         user_home_dir = self.user.profile.home_dir_path
 
         dir_should_not_be_scanned = os.path.join(user_home_dir, 'dx')
@@ -61,7 +63,8 @@ class ManagementCommandsScanTest(TestCase):
 
     def test_dirs_should_be_scanned(self):
         for dir_name in ('files', 'b', 'd'):
-            self.assertIsInstance(Directory.objects.get(name=dir_name), Directory)
+            self.assertIsInstance(
+                Directory.objects.get(name=dir_name), Directory)
 
     def test_owner_of_files(self):
         for file_name in ('a', 'c'):

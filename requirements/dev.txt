@@ -2,3 +2,6 @@ Werkzeug==0.11.9
 autoflake==0.6.6
 isort==4.2.5
 yapf==0.12.2
+pytest>=3.0.3
+pytest-cov==2.4.0
+pytest-django==3.0.0
