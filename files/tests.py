@@ -9,7 +9,6 @@ from files.models import Directory, File
 
 
 class ManagementCommandsScanTest(TestCase):
-
     def setUp(self):
         '''
         user_home_dir/
@@ -23,7 +22,9 @@ class ManagementCommandsScanTest(TestCase):
         '''
 
         self.user = User.objects.create_user(
-            username='fake-user-for-testing', email='test@test.com', password='test')
+            username='fake-user-for-testing',
+            email='test@test.com',
+            password='test')
         user_home_dir = self.user.profile.home_dir_path
 
         dir_should_not_be_scanned = os.path.join(user_home_dir, 'dx')
@@ -94,22 +95,18 @@ class ManagementCommandsScanTest(TestCase):
         # The parent of file c and dir d is dir b
         self.assertEqual(
             Directory.objects.get(name='b').id,
-            File.objects.get(name='c').parent.id,
-        )
+            File.objects.get(name='c').parent.id, )
         self.assertEqual(
             Directory.objects.get(name='b').id,
-            Directory.objects.get(name='d').parent.id,
-        )
+            Directory.objects.get(name='d').parent.id, )
 
         # The parent of file a and dir b is dir files
         self.assertEqual(
             Directory.objects.get(name='files').id,
-            File.objects.get(name='a').parent.id,
-        )
+            File.objects.get(name='a').parent.id, )
         self.assertEqual(
             Directory.objects.get(name='files').id,
-            Directory.objects.get(name='b').parent.id,
-        )
+            Directory.objects.get(name='b').parent.id, )
 
     def tearDown(self):
         self.user.delete()
