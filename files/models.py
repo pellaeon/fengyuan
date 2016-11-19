@@ -3,6 +3,7 @@ import uuid
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
+from django.utils import timezone
 from polymorphic_tree.models import (PolymorphicMPTTModel,
                                      PolymorphicTreeForeignKey)
 
@@ -24,8 +25,8 @@ class Inode(FYNode):
     Actual file/dir existing in filesystem
     """
     owner = models.ForeignKey(User)
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
+    created = models.DateTimeField(default=timezone.now)
+    updated = models.DateTimeField(default=timezone.now)
     size = models.BigIntegerField(
         null=True, blank=True)  # null means unknown size
 
