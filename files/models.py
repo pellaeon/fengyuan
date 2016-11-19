@@ -1,4 +1,3 @@
-import os
 import uuid
 
 from django.conf import settings
@@ -34,12 +33,18 @@ class Inode(FYNode):
 
 class Directory(Inode):
     path = models.FilePathField(
-        path=settings.MEDIA_ROOT, recursive=True, allow_folders=True, allow_files=False)
+        path=settings.MEDIA_ROOT,
+        recursive=True,
+        allow_folders=True,
+        allow_files=False,
+    )
 
-    @property
-    def name(self):
-        return os.path.basename(self.path)
 
 # TODO class RootDirectory(Directory)
 # Future: different FileStorage class configured in RootDirectory
-# TODO class File(Inode)
+
+
+class File(Inode):
+    # http://www.ietf.org/rfc/rfc4288.txt
+    # type-name/subtype-name == 127+1+127 == 255
+    mime = models.CharField(max_length=256, default='application/octet-stream')

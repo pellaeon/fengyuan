@@ -1,0 +1,31 @@
+language: python
+sudo: false
+
+# https://docs.travis-ci.com/user/languages/python/
+python:
+    # Django 1.10 requires Python 2.7, 3.4, or 3.5.
+    # https://docs.djangoproject.com/en/1.10/releases/1.10/
+    - "2.7"
+    - "3.4"
+    - "3.5"
+    - "3.5-dev"
+    - "3.6-dev"
+    - "nightly"
+
+matrix:
+    allow_failures:
+        - python: "2.7"  # Will (probably) be deprecated in 2020, so ...
+        - python: "nightly"
+
+before_install:
+    - cp example.env .env
+
+install:
+    - pip install -r requirements.txt -r requirements/dev.txt
+
+before_script:
+    # Make sure the version of the dependent packages are correct on Travis CI.
+    - pip freeze
+
+script:
+    - pytest
